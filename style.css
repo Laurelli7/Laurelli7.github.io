@@ -241,6 +241,108 @@ main h2 {
 }
 .pub-links a:hover { border-color: var(--accent); opacity: 1; }
 
+/* ---------- Hidden photo terminal ---------- */
+.avatar { cursor: pointer; transition: box-shadow 0.25s ease; }
+.avatar:hover,
+.avatar:focus-visible {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12), 0 0 26px rgba(255, 166, 87, 0.55);
+}
+
+.no-scroll { overflow: hidden; }
+
+.crt {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(14, 9, 4, 0.9);
+  cursor: pointer;
+  animation: crt-fade 0.3s ease;
+}
+@keyframes crt-fade { from { opacity: 0; } }
+
+.crt-window {
+  width: min(520px, 94vw);
+  max-height: 94vh;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #58381e;
+  background: #170f08;
+  box-shadow: 0 0 80px rgba(255, 147, 41, 0.28), 0 24px 60px rgba(0, 0, 0, 0.5);
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  animation: crt-flicker 4s infinite;
+}
+@keyframes crt-flicker {
+  0%, 91%, 94%, 100% { opacity: 1; }
+  92.5% { opacity: 0.96; }
+}
+
+.crt-bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: #211508;
+  border-bottom: 1px solid #58381e;
+}
+.crt-dot { width: 11px; height: 11px; border-radius: 50%; background: #58381e; }
+.crt-dot:first-child { background: #b3541e; }
+.crt-title { margin-left: 6px; font-size: 0.78rem; color: #a06b3c; }
+
+.crt-body { padding: 16px 18px 14px; }
+
+.crt-lines {
+  margin: 0 0 12px;
+  min-height: 8.5em;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  color: #ffbf80;
+  text-shadow: 0 0 6px rgba(255, 160, 70, 0.45);
+}
+.crt-lines::after { content: "▊"; animation: crt-blink 1s steps(1) infinite; }
+@keyframes crt-blink { 50% { opacity: 0; } }
+
+.crt-photo {
+  margin: 0;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.crt-photo img {
+  display: block;
+  width: 100%;
+  max-height: 56vh;
+  object-fit: cover;
+  filter: blur(16px) sepia(0.9) brightness(0.35) contrast(1.1);
+  transform: scale(1.06);
+  transition: filter 2.2s ease, transform 2.2s ease;
+}
+.crt-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, 0) 0 2px, rgba(10, 4, 0, 0.18) 2px 3px),
+    radial-gradient(120% 90% at 50% 45%, rgba(255, 166, 87, 0) 55%, rgba(120, 60, 10, 0.35) 100%);
+  mix-blend-mode: multiply;
+}
+.crt-photo.lit img {
+  filter: blur(0) sepia(0.12) brightness(1) contrast(1);
+  transform: scale(1);
+}
+
+.crt-hint {
+  margin: 10px 0 0;
+  font-size: 0.7rem;
+  color: #7d5230;
+  text-align: center;
+}
+
 /* ---------- Footer ---------- */
 .foot {
   margin-top: 3.5rem;
