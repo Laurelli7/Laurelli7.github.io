@@ -23,8 +23,12 @@
 
 <div class="page">
   <aside class="profile">
-    <img class="avatar" src="profile.jpg" alt="Zhongxuan Li" id="avatar" role="button"
-      tabindex="0" aria-label="Open a hidden photo">
+    <button class="avatar-toggle" id="avatar-toggle" type="button" aria-pressed="false"
+      aria-label="Reveal a hidden photo">
+      <img class="avatar" src="profile.jpg" alt="Zhongxuan Li">
+      <img class="avatar avatar-back" src="warmth.jpg"
+        alt="Laurel smiling at a birthday cake with two lit candles">
+    </button>
 
     <h2 class="p-name">Zhongxuan Li</h2>
     <!-- Optional: add a pronouns line here, e.g. <p class="p-pronouns">they/them</p> -->
@@ -185,23 +189,20 @@
   </main>
 </div>
 
-<div class="warmth" id="warmth" role="dialog" aria-label="Hidden photo">
-  <img src="warmth.jpg" alt="Laurel smiling at a birthday cake with two lit candles">
-</div>
+<div class="wash" aria-hidden="true"></div>
 
 <script>
   (function () {
-    var avatar = document.getElementById("avatar");
-    var warmth = document.getElementById("warmth");
-    function show() { warmth.classList.add("open"); document.body.classList.add("no-scroll"); }
-    function hide() { warmth.classList.remove("open"); document.body.classList.remove("no-scroll"); }
-    avatar.addEventListener("click", show);
-    avatar.addEventListener("keydown", function (e) {
-      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(); }
+    var btn = document.getElementById("avatar-toggle");
+    function setWarm(on) {
+      document.body.classList.toggle("warm", on);
+      btn.setAttribute("aria-pressed", String(on));
+    }
+    btn.addEventListener("click", function () {
+      setWarm(!document.body.classList.contains("warm"));
     });
-    warmth.addEventListener("click", hide);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && warmth.classList.contains("open")) hide();
+      if (e.key === "Escape") setWarm(false);
     });
   })();
 </script>

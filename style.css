@@ -108,15 +108,39 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   }
 }
 
-.avatar {
+.avatar-toggle {
+  position: relative;
   display: block;
   width: 210px;
   height: 265px;
   margin: 0 auto 1.4rem;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
+  transition: box-shadow 0.25s ease;
+}
+.avatar-toggle:hover,
+.avatar-toggle:focus-visible {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12), 0 0 26px rgba(255, 166, 87, 0.55);
+}
+
+.avatar {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12);
 }
+
+.avatar-back {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+body.warm .avatar-back { opacity: 1; }
 
 .p-name {
   margin: 0 0 0.2rem;
@@ -241,63 +265,44 @@ main h2 {
 }
 .pub-links a:hover { border-color: var(--accent); opacity: 1; }
 
-/* ---------- Hidden photo ---------- */
-.avatar { cursor: pointer; transition: box-shadow 0.25s ease; }
-.avatar:hover,
-.avatar:focus-visible {
-  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12), 0 0 26px rgba(255, 166, 87, 0.55);
-}
-
-.no-scroll { overflow: hidden; }
-
-.warmth {
+/* ---------- Warm page wash (active while the hidden photo shows) ---------- */
+.wash {
   position: fixed;
   inset: 0;
   z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.5rem;
-  cursor: pointer;
+  pointer-events: none;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.6s ease, visibility 0s linear 0.6s;
+  background:
+    repeating-linear-gradient(0deg, rgba(26, 10, 0, 0) 0 3px, rgba(26, 10, 0, 0.12) 3px 4px),
+    radial-gradient(140% 140% at 50% 50%, rgba(46, 20, 4, 0) 60%, rgba(20, 8, 0, 0.5) 100%),
+    rgba(255, 138, 42, 0.12);
+  backdrop-filter: sepia(0.5) saturate(1.1) brightness(0.85);
+  -webkit-backdrop-filter: sepia(0.5) saturate(1.1) brightness(0.85);
 }
-.warmth.open {
+body.warm .wash {
   opacity: 1;
   visibility: visible;
   transition: opacity 0.6s ease;
 }
 
-/* The whole page beneath goes warm: amber grade, scanlines, vignette. */
-.warmth::before {
+.wash::after {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(0deg, rgba(26, 10, 0, 0) 0 3px, rgba(26, 10, 0, 0.16) 3px 4px),
-    radial-gradient(130% 130% at 50% 50%, rgba(46, 20, 4, 0.25) 40%, rgba(20, 8, 0, 0.78) 100%),
-    rgba(255, 138, 42, 0.14);
-  backdrop-filter: sepia(0.55) saturate(1.1) brightness(0.82);
-  -webkit-backdrop-filter: sepia(0.55) saturate(1.1) brightness(0.82);
+  background: #1a0a00;
+  opacity: 0;
   animation: warmth-flicker 3.4s infinite;
 }
 @keyframes warmth-flicker {
-  0%, 90%, 94%, 100% { opacity: 1; }
-  92% { opacity: 0.93; }
-}
-
-.warmth img {
-  position: relative;
-  max-width: min(520px, 86vw);
-  max-height: 84vh;
-  border-radius: 8px;
-  box-shadow: 0 0 90px rgba(255, 147, 41, 0.35), 0 30px 70px rgba(0, 0, 0, 0.55);
+  0%, 90%, 94%, 100% { opacity: 0; }
+  92% { opacity: 0.07; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .warmth, .warmth.open { transition: none; }
-  .warmth::before { animation: none; }
+  .wash, body.warm .wash, .avatar-back { transition: none; }
+  .wash::after { animation: none; }
 }
 
 /* ---------- Footer ---------- */
