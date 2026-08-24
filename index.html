@@ -189,20 +189,12 @@
   </main>
 </div>
 
-<div class="wash" aria-hidden="true"></div>
-
 <script>
   (function () {
     var btn = document.getElementById("avatar-toggle");
-    function setWarm(on) {
-      document.body.classList.toggle("warm", on);
-      btn.setAttribute("aria-pressed", String(on));
-    }
     btn.addEventListener("click", function () {
-      setWarm(!document.body.classList.contains("warm"));
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setWarm(false);
+      var on = btn.classList.toggle("lit");
+      btn.setAttribute("aria-pressed", String(on));
     });
   })();
 </script>

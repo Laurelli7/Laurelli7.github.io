@@ -140,7 +140,13 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   opacity: 0;
   transition: opacity 0.6s ease;
 }
-body.warm .avatar-back { opacity: 1; }
+
+.avatar-toggle.lit {
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.12),
+    0 0 34px rgba(255, 140, 40, 0.75),
+    0 0 80px rgba(255, 140, 40, 0.35);
+}
+.avatar-toggle.lit .avatar-back { opacity: 1; }
 
 .p-name {
   margin: 0 0 0.2rem;
@@ -265,44 +271,8 @@ main h2 {
 }
 .pub-links a:hover { border-color: var(--accent); opacity: 1; }
 
-/* ---------- Warm page wash (active while the hidden photo shows) ---------- */
-.wash {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.6s ease, visibility 0s linear 0.6s;
-  background:
-    repeating-linear-gradient(0deg, rgba(26, 10, 0, 0) 0 3px, rgba(26, 10, 0, 0.12) 3px 4px),
-    radial-gradient(140% 140% at 50% 50%, rgba(46, 20, 4, 0) 60%, rgba(20, 8, 0, 0.5) 100%),
-    rgba(255, 138, 42, 0.12);
-  backdrop-filter: sepia(0.5) saturate(1.1) brightness(0.85);
-  -webkit-backdrop-filter: sepia(0.5) saturate(1.1) brightness(0.85);
-}
-body.warm .wash {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.6s ease;
-}
-
-.wash::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #1a0a00;
-  opacity: 0;
-  animation: warmth-flicker 3.4s infinite;
-}
-@keyframes warmth-flicker {
-  0%, 90%, 94%, 100% { opacity: 0; }
-  92% { opacity: 0.07; }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .wash, body.warm .wash, .avatar-back { transition: none; }
-  .wash::after { animation: none; }
+  .avatar-back, .avatar-toggle { transition: none; }
 }
 
 /* ---------- Footer ---------- */
