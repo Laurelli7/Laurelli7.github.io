@@ -226,6 +226,8 @@ main h2 {
   margin: 1.6rem 0;
 }
 
+.pub-noyear { grid-template-columns: minmax(0, 1fr); }
+
 .pub-year {
   color: var(--muted);
   font-size: 0.92rem;

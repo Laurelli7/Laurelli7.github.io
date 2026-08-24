@@ -16,7 +16,6 @@ HTML comments in `index.html` mark each spot:
 - **Photo** — drop `profile.jpg` in the repo root and swap the initials `<div class="avatar">` for the `<img>` tag shown in the comment above it.
 - **Scholar link** — replace `YOUR-ID` in the sidebar with your Google Scholar profile ID, or delete that list item.
 - **Resume** — the sidebar links to `cv.pdf`. Add the file or remove the link.
-- **Dates** — the Teaching entry says `Term`, the two award entries say `Year`.
 - **Teaching duties and award details** — both are described generically; edit to match reality.
 
 ## Editing notes
