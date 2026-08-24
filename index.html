@@ -72,9 +72,6 @@
       <p>My research interests lie at the intersection of <strong>AI</strong> and
         <strong>software security</strong>. Recently, I focus on using AI to solve software
         security problems, in particular combining AI with <strong>symbolic execution</strong>.</p>
-
-      <p class="note">Always happy to talk about fuzzing, program analysis, or anything adjacent
-        &mdash; reach me at <a href="mailto:zxli7@uchicago.edu">zxli7@uchicago.edu</a>.</p>
     </section>
 
     <section id="publications">
@@ -87,13 +84,26 @@
           <p class="pub-authors">Jie Zhu, Penghui Li, <span class="me">Zhongxuan Li</span>, Chihao Shen,
             Ziyang Li, Yizheng Chen, Kexin Pei</p>
           <p class="pub-venue">arXiv:2606.29108</p>
-          <p class="pub-abstract">Symbolic execution stalls on structural patterns that real programs
-            are full of &mdash; symbolic loops, bit-level manipulation, awkward memory access &mdash; which
-            drive path explosion and expensive constraints. Symbolon treats the discovery of
-            source-level code transformations as a search problem instead of relying on fixed compiler
-            optimizations or hand-written rewrite rules, learning a library of transformations offline
-            and then applying them context-sensitively, since whether a rewrite helps depends heavily
-            on where it lands.</p>
+          <p class="pub-abstract"><strong>Abstract:</strong> Symbolic execution is a powerful program
+            analysis technique with broad applications, such as vulnerability detection, security
+            testing, and malware analysis. However, this technique is known to suffer from scalability
+            issues, e.g., path explosion, complex constraints, due to certain structural and semantic
+            patterns commonly presented in real-world programs. Existing approaches attempt to escape
+            these patterns by transforming programs into new representations to reduce the execution
+            cost. Unfortunately, these transformations are often too rigid to exploit diverse local
+            program semantics and sometimes rely on compiler optimizations designed for concrete
+            execution that may misalign with the goals of symbolic execution. We present Symbolon, a
+            framework that automatically learns diverse code transformations and applies them
+            context-sensitively to improve symbolic execution. Our key insight is to formulate
+            transformation discovery as a search problem over program representations. To make the
+            search practical, Symbolon learns transformations cheaply offline on small programs,
+            distills them into a reusable library of agent skills, and uses an agent to instantiate
+            these skills on repo-level targets. Our evaluation shows that Symbolon substantially
+            improves the symbolic execution engine KLEE across 16 search strategies on 32 real-world
+            programs, increasing line coverage by 3.69x on average while reducing peak memory and
+            per-query solver time by 29.2x and 123x, respectively. When applied to the latest Linux
+            kernel, Symbolon uncovers 21 previously unknown bugs, all of which have been reported to
+            the kernel maintainers.</p>
           <p class="pub-links">
             <a href="https://arxiv.org/abs/2606.29108">arXiv</a>
             <a href="https://arxiv.org/pdf/2606.29108">PDF</a>
@@ -108,12 +118,28 @@
           <h3><a href="https://arxiv.org/abs/2508.21302">Locus: Agentic Predicate Synthesis for Directed Fuzzing</a></h3>
           <p class="pub-authors">Jie Zhu, Chihao Shen, Ziyang Li, Jiahao Yu, Yizheng Chen, Kexin Pei</p>
           <p class="pub-venue">48th IEEE/ACM International Conference on Software Engineering (ICSE 2026), Rio de Janeiro</p>
-          <p class="pub-abstract">Directed fuzzing has to reach target states nested deep in a program,
-            and branch distance alone is a poor measure of progress toward them. Locus uses an agentic
-            synthesizer&ndash;validator loop to generate predicates that capture intermediate states along
-            the way, then proves via symbolic execution that each predicate strictly relaxes the target
-            so no bug-finding input is ever rejected. It speeds up eight state-of-the-art fuzzers by
-            41.6&times; on average and has surfaced nine previously unpatched bugs.</p>
+          <p class="pub-abstract"><strong>Abstract:</strong> Directed fuzzing aims to find program
+            inputs that lead to specified target program states. It has broad applications, such as
+            debugging system crashes, confirming reported bugs, and generating exploits for potential
+            vulnerabilities. This task is inherently challenging because target states are often
+            deeply nested in the program, while the search space manifested by numerous possible
+            program inputs is prohibitively large. Existing approaches rely on branch distances or
+            manually-specified constraints to guide the search; however, the branches alone are often
+            insufficient to precisely characterize progress toward reaching the target states, while
+            the manually specified constraints are often tailored for specific bug types and thus
+            difficult to generalize to diverse target states and programs. We present Locus, a novel
+            framework to improve the efficiency of directed fuzzing. Our key insight is to synthesize
+            predicates to capture fuzzing progress as semantically meaningful intermediate states,
+            serving as milestones towards reaching the target states. When used to instrument the
+            program under fuzzing, they can reject executions unlikely to reach the target states,
+            while providing additional coverage guidance. To automate this task and generalize to
+            diverse programs, Locus features an agentic framework with program analysis tools to
+            synthesize and iteratively refine the candidate predicates, while ensuring the predicates
+            strictly relax the target states to prevent false rejections via symbolic execution. Our
+            evaluation shows that Locus substantially improves the efficiency of eight
+            state-of-the-art fuzzers in discovering real-world vulnerabilities, achieving an average
+            speedup of 41.6x. So far, Locus has found nine previously unpatched bugs, with three
+            already acknowledged with draft patches.</p>
           <p class="pub-links">
             <a href="https://arxiv.org/abs/2508.21302">arXiv</a>
             <a href="https://doi.org/10.1145/3744916.3773102">DOI</a>
