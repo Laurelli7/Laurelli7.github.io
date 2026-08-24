@@ -10,19 +10,6 @@
   --max: 1180px;
 }
 
-[data-theme="dark"] {
-  --bg: #1b1e21;
-  --text: #c6cbd0;
-  --heading: #eef1f3;
-  --muted: #97a0a8;
-  --accent: #5cb6cf;
-  --rule: #32383e;
-  --chip: #272c31;
-}
-
-[data-theme="light"] .icon-sun { display: none; }
-[data-theme="dark"] .icon-moon { display: none; }
-
 /* ---------- Base ---------- */
 * { box-sizing: border-box; }
 
@@ -97,18 +84,6 @@ h1, h2, h3 { color: var(--heading); line-height: 1.25; }
   text-decoration: none;
 }
 .topnav a:hover { color: var(--accent); opacity: 1; }
-
-#theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  border: none;
-  background: none;
-  color: var(--muted);
-  padding: 0.3rem;
-  cursor: pointer;
-  border-radius: 50%;
-}
-#theme-toggle:hover { color: var(--accent); background: var(--chip); }
 
 /* ---------- Layout ---------- */
 .page {

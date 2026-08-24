@@ -21,5 +21,4 @@ HTML comments in `index.html` mark each spot:
 ## Editing notes
 
 - Sections are `<section id="...">` blocks in `index.html`; the top navbar links to them by anchor. Add or remove a section and its navbar link together.
-- Light/dark mode is a toggle in the navbar (gear position, sun/moon icon). It follows the visitor's system preference by default and remembers their choice in localStorage.
-- Colors live in the `:root` (light) and `[data-theme="dark"]` blocks at the top of `style.css`.
+- Colors live in the `:root` block at the top of `style.css`.
