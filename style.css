@@ -188,9 +188,6 @@ main h2 {
   border-bottom: 1px solid var(--rule);
 }
 
-.focus { padding-left: 1.3rem; }
-.focus li { margin: 0.7rem 0; }
-
 .note { color: var(--muted); }
 
 /* ---------- Publication-style entries ---------- */
