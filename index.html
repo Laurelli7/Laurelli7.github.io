@@ -185,73 +185,23 @@
   </main>
 </div>
 
-<div class="crt" id="crt" hidden>
-  <div class="crt-window" role="dialog" aria-modal="true" aria-label="Hidden photo">
-    <div class="crt-bar">
-      <span class="crt-dot"></span><span class="crt-dot"></span><span class="crt-dot"></span>
-      <span class="crt-title">laurel@warmth:~</span>
-    </div>
-    <div class="crt-body">
-      <pre class="crt-lines" id="crt-lines"></pre>
-      <figure class="crt-photo" id="crt-photo">
-        <img src="warmth.jpg" alt="Laurel smiling at a birthday cake with two lit candles">
-      </figure>
-      <p class="crt-hint">click anywhere or press Esc to close</p>
-    </div>
-  </div>
+<div class="warmth" id="warmth" role="dialog" aria-label="Hidden photo">
+  <img src="warmth.jpg" alt="Laurel smiling at a birthday cake with two lit candles">
 </div>
 
 <script>
   (function () {
     var avatar = document.getElementById("avatar");
-    var crt = document.getElementById("crt");
-    var linesEl = document.getElementById("crt-lines");
-    var photo = document.getElementById("crt-photo");
-    var lines = [
-      "$ whoami",
-      "laurel",
-      "$ sudo open ~/memories/warmth.jpg",
-      "decrypting  ▓▓▓▓▓▓▓▓▓▓  100%",
-      "rendering warmth ..."
-    ];
-    var timer = null;
-
-    function typeLines(i, j) {
-      if (i >= lines.length) { photo.classList.add("lit"); return; }
-      if (j <= lines[i].length) {
-        linesEl.textContent = lines.slice(0, i).join("\n") + (i ? "\n" : "") + lines[i].slice(0, j);
-        timer = setTimeout(function () { typeLines(i, j + 1); }, lines[i][0] === "$" ? 26 : 10);
-      } else {
-        timer = setTimeout(function () { typeLines(i + 1, 0); }, 280);
-      }
-    }
-
-    function show() {
-      crt.hidden = false;
-      document.body.classList.add("no-scroll");
-      photo.classList.remove("lit");
-      linesEl.textContent = "";
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        linesEl.textContent = lines.join("\n");
-        photo.classList.add("lit");
-      } else {
-        typeLines(0, 0);
-      }
-    }
-
-    function hide() {
-      crt.hidden = true;
-      document.body.classList.remove("no-scroll");
-      clearTimeout(timer);
-    }
-
+    var warmth = document.getElementById("warmth");
+    function show() { warmth.classList.add("open"); document.body.classList.add("no-scroll"); }
+    function hide() { warmth.classList.remove("open"); document.body.classList.remove("no-scroll"); }
     avatar.addEventListener("click", show);
     avatar.addEventListener("keydown", function (e) {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(); }
     });
-    crt.addEventListener("click", hide);
+    warmth.addEventListener("click", hide);
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !crt.hidden) hide();
+      if (e.key === "Escape" && warmth.classList.contains("open")) hide();
     });
   })();
 </script>
