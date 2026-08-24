@@ -243,9 +243,6 @@ main h2 {
   letter-spacing: 0.06em;
 }
 
-.pub-authors { margin: 0.15rem 0; font-size: 0.98rem; }
-.pub-authors .me { font-weight: 700; color: var(--heading); }
-
 .pub-venue {
   margin: 0.1rem 0;
   color: var(--muted);
