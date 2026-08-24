@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zhongxuan Li</title>
+<meta name="description" content="Zhongxuan Li — University of Chicago. AI for software security: program analysis, fuzzing, and symbolic execution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+  <header class="rail">
+    <a class="name" href="index.html">Zhongxuan<br>Li</a>
+    <p class="affil">University of Chicago<br>Advised by <a href="https://www.kexinpei.com/">Kexin Pei</a></p>
+
+    <nav class="cfg" aria-label="Sections">
+      <ul>
+        <li aria-current="page"><a href="index.html">About</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="teaching.html">Teaching</a></li>
+        <li><a href="awards.html">Awards</a></li>
+        <li><a href="misc.html">Miscellaneous</a></li>
+      </ul>
+    </nav>
+
+    <p class="rail-foot mono">
+      <a href="mailto:zxli7@uchicago.edu">Email</a>
+      <a href="https://github.com/Laurelli7">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=YOUR-ID">Scholar</a>
+      <a href="cv.pdf">CV</a>
+    </p>
+  </header>
+
+  <main id="main">
+    <p class="eyebrow mono">AI for software security</p>
+    <h1>Making program analysis fast enough to matter.</h1>
+
+    <p class="lede">I&rsquo;m an undergraduate at the University of Chicago, advised by Kexin Pei. I work on
+      putting language models to work inside classical program-analysis pipelines &mdash; fuzzing,
+      symbolic execution, static reasoning &mdash; where the model proposes and a verifier decides.</p>
+
+    <p>Techniques like directed fuzzing and symbolic execution are precise but slow. They stall on the
+      same structural obstacles: target states buried deep behind long chains of implicit preconditions,
+      search spaces too large to enumerate, path explosion, constraints that a solver chews on for hours.
+      Language models are good at exactly the thing those pipelines lack &mdash; reading unfamiliar code and
+      guessing what matters &mdash; and bad at exactly the thing those pipelines guarantee, which is being right.</p>
+
+    <p>So the research question I keep returning to is where to put the seam. In our work on directed
+      fuzzing, the model synthesizes intermediate predicates that act as milestones toward a target state,
+      and a compiler plus symbolic execution proves each one only relaxes the target, so a wrong guess
+      can never reject an input that would have found the bug. In our work on symbolic execution, the
+      search is over code transformations themselves: learn which rewrites help, then apply them where the
+      local context says they will. In both cases the model&rsquo;s output space is deliberately narrow enough
+      to be checked. That constraint is what makes the speedups usable rather than merely reported &mdash; and
+      what turns them into real bugs in real software.</p>
+
+    <p>I&rsquo;m especially interested in what else fits this shape: which parts of a static analyzer,
+      a verifier, or a test generator can be handed to a model and still be trusted afterward.</p>
+
+    <ul class="interests">
+      <li>
+        <span class="k mono">Fuzzing</span>
+        <span class="v">Directed and coverage-guided search, progress-capturing feedback, agentic
+          instrumentation, real-world vulnerability discovery.</span>
+      </li>
+      <li>
+        <span class="k mono">Symbolic execution</span>
+        <span class="v">Path explosion, solver cost, learned code transformations, program
+          representations tuned for the analysis rather than the CPU.</span>
+      </li>
+      <li>
+        <span class="k mono">LLMs &amp; verification</span>
+        <span class="v">Bounding model error with compilers, solvers, and symbolic checks; designing
+          output spaces that can be validated.</span>
+      </li>
+    </ul>
+
+    <h2>Currently</h2>
+    <!-- Add anything time-sensitive here: what you're building this quarter,
+         whether you're applying to PhD programs, internships you're looking for. -->
+    <p class="note">Always happy to talk about fuzzing, program analysis, or anything adjacent.
+      Reach me at <a href="mailto:zxli7@uchicago.edu">zxli7@uchicago.edu</a>.</p>
+  </main>
+</div>
+</body>
+</html>
